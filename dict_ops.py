@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def merge_dicts(dict1, dict2):
 
     #copy one element from each dictionary
@@ -33,14 +36,14 @@ def merge_dicts(dict1, dict2):
 
     return merged_dict
 
-def dict_to_array(dict):
+def dict_to_file(dict):
 
     #get different parameter names
-    unique = list(set([item for sublist in [list(set(list(dict[key].keys()))) for key in dict] for item in sublist]))
+    unique = np.unique([item for sublist in [list(set(list(dict[key].keys()))) for key in dict] for item in sublist])
 
     array = [dict_list_to_list(dict[key], unique) for key in dict]
 
-    print_array(array, unique)
+    print_array_to_file(array, unique)
 
     return array, unique
 
@@ -48,22 +51,35 @@ def dict_list_to_list(dict, lst):
     return [dict[key] if key in dict else "-" for key in lst]
 
 
-def print_array(array, unique):
+def print_array_to_file(array, unique):
+    file = open('merged_databases.txt', 'w')
 
+    #remove new line from elements
+    for row in array:
+        for ind in range(len(row)):
+            row[ind] = row[ind].replace('\n', '|')
+
+    #join elements and labels
     array = [unique] + array
+
+    #create table with lengths of each column
     lengths = []
     for index in range(len(unique)):
         lengths = lengths + [max([len(row[index]) for row in array])]
-
     lengths = [l + 4 for l in lengths]
 
+    #write array to file
+    st = ''
     for row in array:
         for el, l in zip(row, lengths):
-            print(el, end='')
-            for i in range(l - len(el)):
-                print(' ', end='')
-        print('')
+            if len(el) > 0: st = st + el
+            else : st = st + '-'
+            for i in range(l - (len(el) if len(el) > 0 else 1)):
+                st = st + ' '
+        file.write(st + '\n')
+        st = ''
 
+    file.close()
 
 
 
