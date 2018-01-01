@@ -23,7 +23,6 @@ def extract_albany_db():
         mod = {}
 
         #get soup object for subpage
-        print(child.attrs['href'])
         child_page = requests.get(address + child.attrs['href'])
         child_soup = BeautifulSoup(child_page.content, 'html.parser')
 
@@ -53,7 +52,6 @@ def extract_modomics_db():
         mod = {}
 
         #get soup object for subpage
-        print(child.attrs['href'])
         child_page = requests.get(address + child.attrs['href'])
         child_soup = BeautifulSoup(child_page.content, 'html.parser')
 

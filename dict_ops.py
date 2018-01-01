@@ -1,5 +1,3 @@
-
-
 def merge_dicts(dict1, dict2):
 
     #copy one element from each dictionary
@@ -41,14 +39,30 @@ def dict_to_array(dict):
     unique = list(set([item for sublist in [list(set(list(dict[key].keys()))) for key in dict] for item in sublist]))
 
     array = [dict_list_to_list(dict[key], unique) for key in dict]
+
+    print_array(array, unique)
+
     return array, unique
 
 def dict_list_to_list(dict, lst):
     return [dict[key] if key in dict else "-" for key in lst]
 
 
+def print_array(array, unique):
 
+    array = [unique] + array
+    lengths = []
+    for index in range(len(unique)):
+        lengths = lengths + [max([len(row[index]) for row in array])]
 
+    lengths = [l + 4 for l in lengths]
+
+    for row in array:
+        for el, l in zip(row, lengths):
+            print(el, end='')
+            for i in range(l - len(el)):
+                print(' ', end='')
+        print('')
 
 
 
