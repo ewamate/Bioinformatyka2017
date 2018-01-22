@@ -52,7 +52,7 @@ def dict_list_to_list(dict, lst):
 
 
 def print_array_to_file(array, unique):
-    file = open('merged_databases.txt', 'w')
+    file = open('merged_databases.data', 'w')
 
     #remove new line from elements
     for row in array:
@@ -62,20 +62,12 @@ def print_array_to_file(array, unique):
     #join elements and labels
     array = [unique] + array
 
-    #create table with lengths of each column
-    lengths = []
-    for index in range(len(unique)):
-        lengths = lengths + [max([len(row[index]) for row in array])]
-    lengths = [l + 4 for l in lengths]
-
     #write array to file
     st = ''
     for row in array:
-        for el, l in zip(row, lengths):
+        for el in row:
             if len(el) > 0: st = st + el
             else : st = st + '-'
-            for i in range(l - (len(el) if len(el) > 0 else 1)):
-                st = st + ' '
         file.write(st + '\n')
         st = ''
 
