@@ -4,6 +4,11 @@ import requests
 
 
 def extract_albany_db():
+    """
+    :return: dictionary with all RNA modifications from http://mods.rna.albany.edu
+    Go through every subpage of http://mods.rna.albany.edu and save information from tables into one dictionary.
+    """
+
     #create soup object with page contents
     address = 'http://mods.rna.albany.edu'
     page = requests.get(address + '/mods/modifications/search')
@@ -28,7 +33,8 @@ def extract_albany_db():
 
         #get parameter names
         value_names = [value.get_text() for value in child_soup.select('div dl dd')]
-        value_names[3:4] = [''.join(value_names[3:4])]
+        value_names[3] = str(value_names[3]) + " " + str(value_names[4])
+        value_names = value_names[:3] + value_names[4:]
 
         #add parameters and values to dictionary
         for key, value in zip(parameter_names, value_names):
@@ -39,6 +45,11 @@ def extract_albany_db():
 
 
 def extract_modomics_db():
+    """
+    :return: dictionary with all RNA modifications from http://modomics.genesilico.pl
+    Go through every subpage of http://modomics.genesilico.pl and save information from tables into one dictionary.
+    """
+
     #create soup object with page contents
     address = 'http://modomics.genesilico.pl'
     page = requests.get(address + '/modifications/')
