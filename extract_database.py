@@ -2,11 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 
 
-
 def extract_albany_db():
     """
-    :return: dictionary with all RNA modifications from http://mods.rna.albany.edu
     Go through every subpage of http://mods.rna.albany.edu and save information from tables into one dictionary.
+    @return: dictionary with all RNA modifications from http://mods.rna.albany.edu
     """
 
     #create soup object with page contents
@@ -46,8 +45,8 @@ def extract_albany_db():
 
 def extract_modomics_db():
     """
-    :return: dictionary with all RNA modifications from http://modomics.genesilico.pl
     Go through every subpage of http://modomics.genesilico.pl and save information from tables into one dictionary.
+    @return: dictionary with all RNA modifications from http://modomics.genesilico.pl
     """
 
     #create soup object with page contents

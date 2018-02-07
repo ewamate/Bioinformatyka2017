@@ -3,9 +3,9 @@ import numpy as np
 
 def merge_dicts(dict1, dict2):
     """
-    :param dict1: first dictionary to merge
-    :param dict2: second dictionary to merge
-    :return: dict1 and dict2 merged into one dictionary
+    @param dict1: first dictionary to merge
+    @param dict2: second dictionary to merge
+    @return: dict1 and dict2 merged into one dictionary
     """
 
     #add information about element database origin
@@ -42,8 +42,8 @@ def merge_dicts(dict1, dict2):
 
 def dict_to_file(dict):
     """
-    :param dict: dictionary to save in file
-    :return: dictionary turned into array and saved, all different parameter names
+    @param dict: dictionary to save in file
+    @return: dictionary turned into array and saved, all different parameter names
     """
 
     #get different parameter names
@@ -57,19 +57,19 @@ def dict_to_file(dict):
 
 def dict_list_to_list(dict, lst):
     """
-    :param dict: dictionary to turn into list
-    :param lst: list of parameter names
-    :return: array of values of dictionary with key in the lst
+    @param dict: dictionary to turn into list
+    @param lst: list of parameter names
+    @return: array of values of dictionary with key in the lst
     """
     return [dict[key] if key in dict else "-" for key in lst]
 
 
 def print_array_to_file(array, unique):
     """
-    :param array: array to save to file
-    :unique lst: list of parameter names
-    :return: -
     Print array to list
+    @param array: array to save to file
+    @param unique: list of parameter names
+    @return: -
     """
 
     file = open('merged_databases.txt', 'w')
