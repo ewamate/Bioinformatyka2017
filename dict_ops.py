@@ -20,18 +20,10 @@ def merge_dicts(dict1, dict2):
     el2 = dict2[el1[0]]
     el1 = el1[1]
 
-    #identify and delete repeted information
-    keys1 = list(el1.keys())
-    keys2 = list(el2.keys())
-    for key1 in keys1:
-        for key2 in keys2:
-            if key1 in el1 and key2 in el2:
-                if el1[key1] == el2[key2] and el1[key1] is not '' and key1 != 'database1':
-                    print('Databases repeat information in ' + key1 + ' and ' + key2 + ' columns.')
-                    for dict in dict2:
-                        if not dict in dict1: dict1[dict] = {key1:dict}
-                        else: dict1[dict][key1] = dict2[dict][key2]
-                        del dict2[dict][key2]
+    #delete repeted information
+    for key in dict1:
+        del dict1[key]['Full name']
+        del dict1[key]['Short name']
 
     #create new dictionary
     unique_elements = list(set(list(dict1.keys()) + list(dict2.keys())))
@@ -80,7 +72,7 @@ def print_array_to_file(array, unique):
     Print array to list
     """
 
-    file = open('merged_databases.data', 'w')
+    file = open('merged_databases.txt', 'w')
 
     #remove new line from elements
     for row in array:
