@@ -1,4 +1,4 @@
-# Bioinformatyka2017
+# RNA_databases_merge
 Project name: Comparison of RNA modification databases
 
 Description: Project contains code for downloading RNA modification databases from http://mods.rna.albany.edu/mods/modifications and http://modomics.genesilico.pl/modifications/ and saving it as a merged database in a text file
